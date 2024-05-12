@@ -1,8 +1,7 @@
 import requests
 import json
 import pandas as pd
-import os 
-import tqdm
+
 
 with open("src/data/config.json", "r") as file:
     config = json.load(file)
