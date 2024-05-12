@@ -43,7 +43,7 @@ Project Organization
     │   │
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
-│   │   │   └── sp500_list_scraping.py         
+    │   │   └── sp500_list_scraping.py         
     │   │
     │   ├── features       <- Scripts to turn raw data into features for modeling
     │   │   └── build_features.py
@@ -57,8 +57,6 @@ Project Organization
     │       └── visualize.py
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
 --------
 
 ```
