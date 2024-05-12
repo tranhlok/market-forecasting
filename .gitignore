@@ -2,6 +2,12 @@
 __pycache__/
 *.py[cod]
 
+# API config
+
+**/secrets.json
+
+data/
+
 # C extensions
 *.so
 
