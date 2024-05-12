@@ -1,4 +1,4 @@
-market-forecaster
+Market Forecaster
 ==============================
 
 Project to apply Deep Learning Models on Stock Market Data with Python and TensorFlow
@@ -7,8 +7,6 @@ Project to apply Deep Learning Models on Stock Market Data with Python and Tenso
 Data Source
 ------------
 <a href="https://iexcloud.io">Data provided by IEX Cloud</a>
-
-
 
 
 Project Organization
@@ -59,8 +57,6 @@ Project Organization
     │       └── visualize.py
     │
     └── tox.ini                             <- tox file with settings for running tox; see tox.readthedocs.io
-
-
 --------
 
 ```
