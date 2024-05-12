@@ -6,7 +6,7 @@ __pycache__/
 
 **/secrets.json
 
-data/
+data/raw
 
 # C extensions
 *.so
