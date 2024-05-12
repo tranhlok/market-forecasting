@@ -1,7 +1,7 @@
 import requests
 import json
 import pandas as pd
-
+from tqdm import tqdm
 
 with open("src/data/config.json", "r") as file:
     config = json.load(file)
@@ -27,14 +27,13 @@ def save_raw_stock_data_to_csv(symbol, selected_time_range="1y"):
                 first_date = stock_data.index.min().strftime('%Y_%m_%d')
                 last_date = stock_data.index.max().strftime('%Y_%m_%d')
 
-                # Save the raw data to CSV
-                csv_filename = f"{symbol}_{first_date}_to_{last_date}.csv"
+                columns_to_remove = ['priceDate', 'id', 'key', 'subkey', 'label']
+                stock_data.drop(columns=columns_to_remove, errors='ignore', inplace=True)
 
                 # Save the raw data to CSV
-                # csv_filename = f"{symbol}_{selected_time_range}.csv"
+                csv_filename = f"{symbol}_{first_date}_to_{last_date}.csv"
                 csv_path = RAW_DATA_PATH + "/" + csv_filename
                 stock_data.to_csv(csv_path)
-                print(f"Raw Data of {symbol} from {first_date} to {last_date} saved to {csv_path}")
             else:
                 print(f"No available data for symbol: {symbol} for {selected_time_range} time range")
 
@@ -42,15 +41,13 @@ def save_raw_stock_data_to_csv(symbol, selected_time_range="1y"):
 def load_sp500_symbols(csv_path):
     try:
         df = pd.read_csv(csv_path)
-        return df['Symbol'].tolist()  # Assuming 'Symbol' is the column name holding the stock symbols
+        return df['Symbol'].tolist() 
     except Exception as e:
         print(f"Error reading the CSV file: {e}")
         return []
 
 def fetch_all_sp500_stock_data(symbols, time_range="1y"):
-    # for symbol in tqdm(symbols, desc="Processing S&P 500 Companies"):   
-    for symbol in symbols:    
-        print(f"Fetching data for {symbol}...")
+    for symbol in tqdm(symbols, desc="Fetching Stock Data of SP500 Companies"):   
         try:
             save_raw_stock_data_to_csv(symbol, time_range)
         except Exception as e:
@@ -59,6 +56,7 @@ def fetch_all_sp500_stock_data(symbols, time_range="1y"):
 
 # Load symbols from the CSV
 sp500_symbols = load_sp500_symbols("data/interim/sp500_list.csv")
-print(sp500_symbols)
 # Fetch stock data for all loaded symbols
 fetch_all_sp500_stock_data(sp500_symbols, "max")
+
+# save_raw_stock_data_to_csv("AAPL")
