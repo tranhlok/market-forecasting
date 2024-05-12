@@ -4,9 +4,14 @@ Market Forecaster
 Project to apply Deep Learning Models on Stock Market Data with Python and TensorFlow
 
 
-Data Source
+Data 
 ------------
+The dataset for this project encompasses comprehensive daily stock price information for all companies listed in the S&P 500 index. The dataset includes stock prices for each trading day beginning from the year 2006. For companies founded post-2006, the dataset commences from the first available trading day, ensuring a complete historical profile from the point of their introduction to the market.
+
+
 <a href="https://iexcloud.io">Data provided by IEX Cloud</a>
+
+The data is automatically fetched and updated from the IEX API using a Python script that leverages the API key for authentication. Execute the script run daily after market close ensures that the dataset remains current with the latest trading data. Users can access this script in the [src/data](https://github.com/tranhlok/market-forecaster/tree/main/src/data) directory of the project repository.
 
 
 Project Organization
