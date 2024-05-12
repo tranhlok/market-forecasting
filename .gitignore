@@ -4,7 +4,7 @@ __pycache__/
 
 # API config
 
-**/secrets.json
+**/config.json
 
 data/raw
 
