@@ -27,7 +27,7 @@ def save_raw_stock_data_to_csv(symbol, selected_time_range="1y"):
                 first_date = stock_data.index.min().strftime('%Y_%m_%d')
                 last_date = stock_data.index.max().strftime('%Y_%m_%d')
 
-                columns_to_remove = ['priceDate', 'id', 'key', 'subkey', 'label']
+                columns_to_remove = ['priceDate', 'id', 'key', 'subkey', 'label', 'updated']
                 stock_data.drop(columns=columns_to_remove, errors='ignore', inplace=True)
 
                 # Save the raw data to CSV
@@ -54,9 +54,9 @@ def fetch_all_sp500_stock_data(symbols, time_range="1y"):
             print(f"Failed to fetch data for {symbol}: {e}")
     print("Fetching completed!")
 
-# Load symbols from the CSV
-sp500_symbols = load_sp500_symbols("data/interim/sp500_list.csv")
-# Fetch stock data for all loaded symbols
-fetch_all_sp500_stock_data(sp500_symbols, "max")
+# # Load symbols from the CSV
+# sp500_symbols = load_sp500_symbols("data/interim/sp500_list.csv")
+# # Fetch stock data for all loaded symbols
+# fetch_all_sp500_stock_data(sp500_symbols, "max")
 
-# save_raw_stock_data_to_csv("AAPL")
+save_raw_stock_data_to_csv("^GSPC")
