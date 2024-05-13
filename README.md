@@ -23,14 +23,15 @@ Project Organization
     │   ├── external                                    <- Data from third party sources.
     │   │   
     │   ├── interim                                     <- Intermediate data that has been transformed.
-    │   │
-    │   ├── processed                                   <- The final, canonical data sets for modeling.
+    │   │   ├── sp500_list.csv                              <- SP 500 companies dataset
+    │   │ 
+    │   ├── processed                                   <- The final, canonical data sets for modeling. Filetype: .CSV
     │   │   ├── all                                     <- Data will all price types, along with change percentages.
     │   │   ├── fully_adjusted                          <- Data with fully adjusted close price, open price, high price, low price, close price and volume
     │   │   ├── split_adjusted                          <- Data with split adjusted close price, open price, high price, low price, close price and volume
     │   │   └── unadjusted                              <- Data with unadjusted close price, open price, high price, low price, close price and volume
     │   │
-    │   ├── raw                                         <- The original, immutable data dump.
+    │   ├── raw                                         <- The original, immutable data dump. Filetype: .CSV
     │   │
     │   └── raw_data_variables.txt                      <- The original data variables' descriptions.
     │
