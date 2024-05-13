@@ -1,50 +1,126 @@
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import MinMaxScaler
+import argparse
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.layers import LSTM, Dense, Input
 
-# Load data
-data = pd.read_csv('data/processed/split_adjusted/NVDA_2006_12_29_to_2024_05_10.csv')
-data['Date'] = pd.to_datetime(data['Date'])
-data.sort_values('Date', inplace=True)
+from helper import data_prep, inverse, plot_train_and_test_predict
+# from visualize import inverse, plot_train_and_test_predict
 
-# Prepare data
-closing_prices = data['Split_Adjusted_Close'].values
-scaler = MinMaxScaler(feature_range=(0, 1))
-closing_prices = scaler.fit_transform(closing_prices.reshape(-1, 1))
+class LSTMModel:
+    def __init__(self, trainX, testX, trainY, look_back, epochs, batch_size):
+        self.trainX = trainX
+        self.testX = testX
+        self.trainY = trainY
+        self.look_back = look_back
+        self.epochs = epochs
+        self.batch_size = batch_size
+        self.model = self._build_model()
 
-# Split data into train and test sets
-split = int(0.7 * len(closing_prices))
-train_data = closing_prices[:split]
-test_data = closing_prices[split:]
+    def _build_model(self):
+        model = Sequential([
+            Input((self.look_back, 1)),
+            LSTM(50, return_sequences=True),
+            LSTM(50, return_sequences=False),
+            Dense(1)
+        ])
+        model.compile(loss='mean_squared_error', optimizer='adam')
+        return model
+    
+    def train(self):
+        with tf.device('/CPU:0'):
+            history = self.model.fit(self.trainX, self.trainY, epochs=self.epochs, batch_size=self.batch_size, verbose=2, validation_split=0.1)
+        return history
+    
+    def save_weights(self):
+        self.model.save_weights('/Users/lok/Developer/market-forecaster/models/nvidia.weights.h5')
 
-# Helper function to create dataset for LSTM
-def create_dataset(dataset, look_back=1):
-    dataX, dataY = [], []
-    for i in range(len(dataset) - look_back):
-        a = dataset[i:(i + look_back), 0]
-        dataX.append(a)
-        dataY.append(dataset[i + look_back, 0])
-    return np.array(dataX), np.array(dataY)
+    def predict(self):
+        train_predict = self.model.predict(self.trainX)
+        test_predict = self.model.predict(self.testX)
+        return train_predict, test_predict
+# Example usage:
 
-look_back = 1
-trainX, trainY = create_dataset(train_data, look_back)
-testX, testY = create_dataset(test_data, look_back)
 
-# Reshape input to be [samples, time steps, features]
-trainX = np.reshape(trainX, (trainX.shape[0], trainX.shape[1], 1))
-testX = np.reshape(testX, (testX.shape[0], testX.shape[1], 1))
 
-# Build and train the LSTM model
-model = Sequential([
-    LSTM(50, return_sequences=True, input_shape=(look_back, 1)),
-    LSTM(50, return_sequences=False),
-    Dense(1)
-])
-model.compile(loss='mean_squared_error', optimizer='adam')
-model.fit(trainX, trainY, epochs=100, batch_size=32, verbose=2, validation_data=(testX, testY))
+def main(symbol):
+    data_folder_path = "/Users/lok/Developer/market-forecaster/data/processed/split_adjusted"
 
-# Save model weights
-model.save_weights('nvidia.h5')
+    target_feature = 'Split_Adjusted_Close'
+    split_ratio = 0.7
+    look_back = 1
+    trainX, testX, trainY, testY, closing_prices, scaler = data_prep(data_folder_path, symbol,target_feature, split_ratio, look_back)
+
+    epochs = 100
+    batch_size = 32
+    lstm_model = LSTMModel(trainX,testX, trainY, look_back, epochs, batch_size)
+    history = lstm_model.train()
+
+    lstm_model.save_weights()
+
+    train_predict, test_predict = lstm_model.predict()
+
+    train_predict, test_predict, inverse_closing_prices = inverse(train_predict,test_predict,closing_prices, scaler)
+    plot_train_and_test_predict(train_predict,test_predict, closing_prices,inverse_closing_prices, look_back)
+
+
+
+main('NVDA')
+# if __name__ == "__main__":
+#     # Create the parser
+#     parser = argparse.ArgumentParser(description='Process some integers.')
+
+#     # Add arguments
+#     parser.add_argument('batchfile', type=float, help='A floating point number for batchfile')
+#     parser.add_argument('size', type=int, help='An integer for size')
+
+#     # Parse arguments
+#     args = parser.parse_args()
+
+#     # Call the main function using parsed arguments
+#     main(args.batchfile, args.size)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def main(batchfile, size):
+    print(f"Batchfile value: {batchfile}")
+    print(f"Size value: {size}")
+
+if __name__ == "__main__":
+    # Create the parser
+    parser = argparse.ArgumentParser(description='Process some integers.')
+
+    # Add arguments
+    parser.add_argument('batchfile', type=float, help='A floating point number for batchfile')
+    parser.add_argument('size', type=int, help='An integer for size')
+
+    # Parse arguments
+    args = parser.parse_args()
+
+    # Call the main function using parsed arguments
+    main(args.batchfile, args.size)
+
