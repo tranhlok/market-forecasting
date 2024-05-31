@@ -4,6 +4,7 @@ Market Forecaster
 Project to apply Deep Learning Models on Stock Market Data with Python and TensorFlow
 
 
+
 Dataset
 ------------
 The dataset for this project encompasses comprehensive daily stock price information for all companies listed in the S&P 500 index. The dataset includes stock prices for each trading day beginning from the year 2006. For companies founded post-2006, the dataset commences from the first available trading day, ensuring a complete historical profile from the point of their introduction to the market.
