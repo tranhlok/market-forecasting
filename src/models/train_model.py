@@ -38,7 +38,6 @@ class LSTMModel:
         train_predict = self.model.predict(self.trainX)
         test_predict = self.model.predict(self.testX)
         return train_predict, test_predict
-# Example usage:
 
 
 
@@ -65,62 +64,3 @@ def main(symbol):
 
 
 main('NVDA')
-# if __name__ == "__main__":
-#     # Create the parser
-#     parser = argparse.ArgumentParser(description='Process some integers.')
-
-#     # Add arguments
-#     parser.add_argument('batchfile', type=float, help='A floating point number for batchfile')
-#     parser.add_argument('size', type=int, help='An integer for size')
-
-#     # Parse arguments
-#     args = parser.parse_args()
-
-#     # Call the main function using parsed arguments
-#     main(args.batchfile, args.size)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def main(batchfile, size):
-    print(f"Batchfile value: {batchfile}")
-    print(f"Size value: {size}")
-
-if __name__ == "__main__":
-    # Create the parser
-    parser = argparse.ArgumentParser(description='Process some integers.')
-
-    # Add arguments
-    parser.add_argument('batchfile', type=float, help='A floating point number for batchfile')
-    parser.add_argument('size', type=int, help='An integer for size')
-
-    # Parse arguments
-    args = parser.parse_args()
-
-    # Call the main function using parsed arguments
-    main(args.batchfile, args.size)
-
