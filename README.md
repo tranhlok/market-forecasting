@@ -24,7 +24,7 @@ The data is automatically fetched and updated from the IEX API using a Python sc
 - The raw dataset can be found in [data/raw](/data/raw/).
 
 ## Forecasting
-I used my own stock dash board to catch the patterns of different tickers. The stock dashboard built on streamlit can be found here: https://github.com/tranhlok/stock-dashboard
+I used my own stock dash board to catch the patterns of different tickers. The stock dashboard built on streamlit can be found here: https://github.com/tranhlok/stock-dashboard. \
 The initial results with LSTM models on NVDA ticker can be seen in the jupyter notebook [`lstm`](/notebooks/lstm.ipynb).
 
 
