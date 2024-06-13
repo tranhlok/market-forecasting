@@ -1,0 +1,24 @@
+
+KEY	                        TYPE	                DESCRIPTION
+close	                    number	Adjusted data for historical dates. Split adjusted only.
+high	                    number	Adjusted data for historical dates. Split adjusted only.
+low	                        number	Adjusted data for historical dates. Split adjusted only.
+open	                    number	Adjusted data for historical dates. Split adjusted only.
+symbol	                    string	Associated symbol or ticker
+volume	                    number	Adjusted data for historical dates. Split adjusted only.
+changeOverTime	            number	Percent change of each interval relative to first value. Useful for comparing multiple stocks.
+marketChangeOverTime	    number	Percent change of each interval relative to first value. 15 minute delayed consolidated data.
+uOpen	                    number	Unadjusted data for historical dates.
+uClose	                    number	Unadjusted data for historical dates.
+uHigh	                    number	Unadjusted data for historical dates.
+uLow	                    number	Unadjusted data for historical dates.
+uVolume	                    number	Unadjusted data for historical dates.
+fOpen	                    number	Fully adjusted for historical dates.
+fClose	                    number	Fully adjusted for historical dates.
+fHigh	                    number	Fully adjusted for historical dates.
+fLow	                    number	Fully adjusted for historical dates.
+fVolume	                    number	Fully adjusted for historical dates.
+label	                    number	A human readable format of the date depending on the range.
+change	                    number	Change from previous trading day.
+changePercent	            number	Change percent from previous trading day.
+ 
