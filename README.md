@@ -4,7 +4,6 @@ Comprehensive dataset of daily stock price information for all companies listed 
 
 Apply Deep Learning models on the newly created dataset with Python and TensorFlow.
 
-<<<<<<< new-readme
 ## Dataset
 
 ### Introduction
