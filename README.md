@@ -34,7 +34,6 @@ The initial results with LSTM models on NVDA ticker can be seen in the jupyter n
 
 To get started, clone this repository to your local machine using the following command:
 
-
 `git clone https://github.com/tranhlok/market-forecaster.git`
 
 `cd market-forecaster`
@@ -50,15 +49,19 @@ OR
 `python3 -m venv venv`
 
 Activate the virtual environment:
-- On Windows:\
+- On Windows:
+
   `.\venv\Scripts\activate`
-- On macOS and Linux:\
+
+- On macOS and Linux:
+
   `source venv/bin/activate`
 
 
 ### 3. Install Dependencies
 
-Install the required Python packages with pip: \
+Install the required Python packages with pip: 
+
 `pip install -r requirements.txt`
 
 ## Configuration
