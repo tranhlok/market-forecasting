@@ -56,7 +56,7 @@ Activate the virtual environment:
   `source venv/bin/activate`
 
 
-3. **Install Dependencies**
+### 3. Install Dependencies
 
 Install the required Python packages with pip: \
 `pip install -r requirements.txt`
