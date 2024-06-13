@@ -104,11 +104,7 @@ To run the data processing pipeline, you will need to set up your IEX Cloud API 
     │
     ├── notebooks                                       <- Jupyter notebooks. Naming convention is a number (for ordering), the creator's initials, and a short `-` delimited 
     │   ├── lstm.ipynx                                      description, e.g. `1.0-jqp-initial-data-exploration`.
-    │   └──  x                    
-    │
-    │
-    ├── reports                                         <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures                                     <- Generated graphics and figures to be used in reporting
+    │               
     │
     ├── requirements.txt                                <- The requirements file for reproducing the analysis environment, e.g.
     │                                                      generated with `pip freeze > requirements.txt`
@@ -124,12 +120,10 @@ To run the data processing pipeline, you will need to set up your IEX Cloud API 
     │   ├── features                                    <- Scripts to turn raw data into features for modeling
     │   │   └── build_features.py
     │   │
-    │   ├── models                                      <- Scripts to train models and then use trained models to make               
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization                               <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
+    │   └── models                                      <- Scripts to train models and then use trained models to make               
+    │       ├── predict_model.py
+    │       └── train_model.py
+       
 
 --------
 
